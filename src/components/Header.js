@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
+import Logo from '../images/logo'
 
 const Nav = styled.nav`
     position: fixed; 
@@ -15,12 +16,6 @@ const Nav = styled.nav`
 
 `
 
-const Logo = styled.p`
-    color: #6B0F1A;
-    font-size: 22px; 
-    
-`
-
 const Menu = styled.ul`
     width: 100%;
     display: flex; 
@@ -32,6 +27,8 @@ const Menu = styled.ul`
 const StyledLink = styled(Link)`
     text-decoration: none;
     color: #000;
+    display: flex;
+    align-items: center;
     &:focus, &:visited, &:link, &:active {
         text-decoration: none;
     }
@@ -47,11 +44,11 @@ function Header() {
         <>
             <Nav>
                 <Menu>
-                    <li><StyledLink to="/welcome" ><Logo>SDA </Logo></StyledLink></li>
-                    <li><StyledLink to="/cadastros">CADASTROS</StyledLink></li>
-                    <li><StyledLink to="/pedidos">PEDIDOS</StyledLink></li>
-                    <li><StyledLink to="/relatórios">RELATÓRIOS</StyledLink></li>
-                    <li><StyledLink to="/sobre">SOBRE</StyledLink></li>
+                    <StyledLink to="/welcome" ><Logo color="#6B0F1A" /></StyledLink>
+                    <StyledLink to="/cadastros">CADASTROS</StyledLink>
+                    <StyledLink to="/pedidos">PEDIDOS</StyledLink>
+                    <StyledLink to="/relatórios">RELATÓRIOS</StyledLink>
+                    <StyledLink to="/sobre">SOBRE</StyledLink>
                 </Menu>
             </Nav>
         </>

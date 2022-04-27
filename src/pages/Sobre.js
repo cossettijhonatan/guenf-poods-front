@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import Logo from '../images/logo'
 
 const BG = styled.div`
     background-color: #E5E5E5; 
@@ -58,16 +59,10 @@ const LogoSide = styled.div`
     background-color: #6B0F1A;
     min-width: 35%;
     display: flex; 
+    flex-direction: column;
     justify-content: center;
     align-items: center; 
-`
-const Logo = styled.p`
-    color: #FFF; 
-    font-size: 50px; 
-    font-weight: 400; 
-    text-align: center; 
-    line-height: 0.3;
-    
+    color: #fff;
 `
 
 const H3 = styled.h3` 
@@ -103,7 +98,8 @@ const Sobre = () => {
                         </TextWrapper>
                     </TextSide>
                     <LogoSide>
-                        <Logo> Logo </Logo>
+                        <Logo color="#fff" />
+                        SDA
                     </LogoSide>
                 </Wrapper>
             </BG>
