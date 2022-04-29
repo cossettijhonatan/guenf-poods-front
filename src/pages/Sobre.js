@@ -63,6 +63,7 @@ const LogoSide = styled.div`
     justify-content: center;
     align-items: center; 
     color: #fff;
+    font-size: 32px;
 `
 
 const H3 = styled.h3` 
@@ -98,7 +99,9 @@ const Sobre = () => {
                         </TextWrapper>
                     </TextSide>
                     <LogoSide>
-                        <Logo color="#fff" />
+                        <div style={{ padding: "12px" }}>
+                            <Logo width="70px" height="70px" color="#fff" />
+                        </div>
                         SDA
                     </LogoSide>
                 </Wrapper>

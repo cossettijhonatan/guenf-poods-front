@@ -4,8 +4,9 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn'
 import Sobre from './pages/Sobre';
-import Cadastros from './pages/Cadastros'
-import Cadastrar from './pages/CadastroForm'
+import Instituicoes from './pages/Instituicoes'
+import InstituicaoCadastro from './pages/InstituicaoCadastro'
+import Produtos from './pages/Produtos'
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
           <Route path="/welcome" element={<Home />} />
           <Route path="/singin" element={<SignIn />} />
           <Route path="/sobre" element={<Sobre />} />
-          <Route path="/cadastros" element={<Cadastros />} />
-          <Route path="/cadastrar" element={<Cadastrar />} />
+          <Route path="/instituicoes" element={<Instituicoes />} />
+          <Route path="/cadastrar-instituicao" element={<InstituicaoCadastro />} />
+          <Route path="/produtos" element={<Produtos />} />
         </Routes>
       </Router>
     </div>

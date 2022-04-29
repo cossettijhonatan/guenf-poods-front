@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Form from "../components/Form";
+import Form from "../components/InstituicaoForm";
 
 const BG = styled.div`
     background-color: #E5E5E5; 
@@ -13,23 +13,25 @@ const BG = styled.div`
 
 const Wrapper = styled.div`
     margin: 90px 0 0 0; 
-    width: 80vw; 
+    width: 90vw; 
     height: 600px; 
     background-color: #FFF; 
     display: flex; 
     flex-direction: column; 
-    align-items: center; 
-    justify-content: space-evenly; 
+    justify-content: center
 
 `
-const TopContainer = styled.h1`
+const TopContainer = styled.div`
     border-bottom: 2px solid #E5E5E5; 
-    width: 100%; 
+    min-height: 75px; 
     display: flex;
+    justify-content: space-between;
     align-items: center;
     font-weight: 500; 
-    padding: 0 0 35px 60px;
+    padding: 0 20px 0 20px; 
+    font-size: 17px;
 `
+
 
 const Cadastro = () => {
     return (

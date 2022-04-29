@@ -1,11 +1,12 @@
 import styled from "styled-components";
 export const FormContainer = styled.form`
-width: 90%;
-height: 65%;
-padding: 30px 0 0;
+width: 100%;
+height: 500px; 
 display: flex;
 flex-direction: column;
 justify-content: center;
+margin-top: 20px; 
+justify-content: space-evenly;
 `;
 
 export const IdContainer = styled.div`
