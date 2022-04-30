@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import Header from '../components/Header';
 import Logo from '../images/logo'
 
 const BG = styled.div`
@@ -74,6 +75,7 @@ const H3 = styled.h3`
 const Sobre = () => {
     return (
         <>
+            <Header />
             <BG>
                 <Wrapper>
                     <TextSide>

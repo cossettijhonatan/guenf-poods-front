@@ -3,26 +3,27 @@ import react, { useState, useEffect } from "react";
 import Axios from "axios";
 import styled from "styled-components";
 import Button from "../components/Button";
-import Instituicao from "../components/Instituicao";
-import InstituicaoFields from "../components/InstituicaoFields";
+import Pedido from "../components/Pedido"
+import RelatorioFields from "../components/PedidoFields";
 import Header from "../components/Header";
 
 
 const Cadastro = () => {
 
-    const url = "http://localhost:3000/instituicaos";
-    const [instituicoes, getInstituicoes] = useState('')
+    const url = "http://localhost:3000/pedidos";
+    const [pedidos, getPedidos] = useState('')
 
     useEffect(() => {
-        getAllInstituicoes()
+        getAllpedidos()
     }, [])
 
-    const getAllInstituicoes = async () => {
+
+    const getAllpedidos = async () => {
         Axios.get(url)
             .then((response) => {
-                const allInstituicoes = response.data
-                console.log(allInstituicoes)
-                getInstituicoes(allInstituicoes)
+                const allpedidos = response.data
+                console.log(allpedidos)
+                getPedidos(allpedidos)
             })
             .catch((e) => {
                 console.error(e);
@@ -31,32 +32,32 @@ const Cadastro = () => {
 
 
     useEffect(() => {
-        console.log(Array.isArray(instituicoes));
-    }, [instituicoes])
+        console.log(Array.isArray(pedidos));
+    }, [pedidos])
 
 
-    let textButton = '+ Cadastrar nova instituição'
+    let textButton = '+ Cadastrar novo pedido'
     return (
         <>
             <Header />
             <BG>
                 <Wrapper>
                     <TopContainer>
-                        Instituições
-                        <Link to="/cadastrar-instituicao">
+                        Pedidos
+                        <Link to="/pedidos">
                             <Button text={textButton} />
                         </Link>
                     </TopContainer>
                     <BottomContainer>
-                        <InstituicaoFields />
-                        {Array.isArray(instituicoes) &&
-                            instituicoes.map(element => (
-                                <Instituicao
+                        <RelatorioFields />
+                        {Array.isArray(pedidos) &&
+                            pedidos.map(element => (
+                                <Pedido
                                     key={element.id}
-                                    nome={element.nomeFantasia}
-                                    cnpj={element.cnpj}
-                                    email={element.mail}
-                                    endereco={element.endereco}
+                                    nome={element.Instituicao}
+                                    data={element.data}
+                                    valor={element.valor}
+                                    status={element.status}
                                     id={element.id}
                                 />
                             )

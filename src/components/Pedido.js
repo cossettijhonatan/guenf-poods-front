@@ -1,4 +1,4 @@
-import Axios from "axios";
+
 import styled from "styled-components";
 import React from 'react';
 
@@ -14,13 +14,17 @@ cursor: pointer;
 `
 
 const Produto = (props) => {
-    console.log(props.preco.toFixed(2))
+    console.log('props', props)
+    let data = props.data.split("-");
+    data = data[2] + "/" + data[1] + "/" + data[0]
     return (
         <Wrapper>
             <Field> {props.id} </Field>
             <Field> {props.nome} </Field>
-            <Field> {props.quantidade} </Field>
-            <Field> {props.preco.toFixed(2)} </Field>
+            <Field> {data} </Field>
+            <Field> {props.valor.toFixed(2)} </Field>
+            <Field> {props.status} </Field>
+            <Button> DOWNLOAD</Button>
         </Wrapper>
     )
 }
@@ -30,7 +34,7 @@ export default Produto;
 const Wrapper = styled.div`
     height: 40px; 
     display: grid; 
-    grid-template-columns: 130px 170px 190px 100px;  
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 1fr; 
     padding: 10px 0; 
     border-top: 1px solid #111;
 

@@ -1,3 +1,4 @@
+
 const LogoVector = (props) => {
     const color = props.color;
     return (
@@ -21,7 +22,7 @@ const LogoVector = (props) => {
                 </path>
                 <path d="M21.7322 29.6984C24.0425 31.3099 27.7881 31.3099 30.0984 29.6984C32.4086 28.087 32.4086 25.4744 30.0984 23.8629C27.7881 22.2515 24.0425 22.2515 21.7322 23.8629C19.422 25.4744 19.422 28.087 21.7322 29.6984Z" class="ccustom" fill={color}>
                 </path>
-            </svg>
+            </svg >
 
         </>
 

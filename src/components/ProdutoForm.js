@@ -54,7 +54,7 @@ const ProdutoForm = () => {
                     </Item>
                     <Item>
                         <Label htmlFor="preco">Preço: </Label>
-                        <Input onChange={(d) => handle(d)} value={data.preco} type="text" name="preco" id="preco" required />
+                        <Input onChange={(d) => handle(d)} value={data.preco} type="number" name="preco" id="preco" required />
                     </Item>
                 </ContentContainer>
             </Wrapper>
