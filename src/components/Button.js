@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 
 const ButtonStyle = styled.button`
@@ -13,8 +14,9 @@ const ButtonStyle = styled.button`
 `
 
 const Button = (props) => {
+
     return (
-        <ButtonStyle> {props.text}</ButtonStyle>
+        <ButtonStyle onClick={clickHandler}> {props.text}</ButtonStyle>
     );
 }
 

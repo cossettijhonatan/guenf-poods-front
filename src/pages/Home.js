@@ -6,47 +6,50 @@ import { auth, db, logout } from "../firebase/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Header from "../components/Header";
 import styled from "styled-components";
+import Statistics from "../components/Statistics";
+import Tasks from "../components/Tasks";
+import User from "../components/User"
 
 function Home() {
     console.log("carregou home")
-    // const [user, loading, error] = useAuthState(auth);
-    // const [name, setName] = useState("");
-    // const navigate = useNavigate();
-    // const fetchUserName = async () => {
-    //     try {
-    //         const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-    //         const doc = await getDocs(q);
-    //         const data = doc.docs[0].data();
-    //         setName(data.name);
-    //     } catch (err) {
-    //         console.error(err);
-    //         alert("An error occured while fetching user data");
-    //     }
-    // };
-    // useEffect(() => {
-    //     if (loading) return;
-    //     if (!user) return navigate("/");
-    //     fetchUserName();
-    // }, [user, loading]);
+    const [user, loading, error] = useAuthState(auth);
+    const [name, setName] = useState("");
+    const navigate = useNavigate();
+    const fetchUserName = async () => {
+        try {
+            const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+            const doc = await getDocs(q);
+            const data = doc.docs[0].data();
+            setName(data.name);
+        } catch (err) {
+            console.error(err);
+            alert("An error occured while fetching user data");
+        }
+    };
+    useEffect(() => {
+        if (loading) return;
+        if (!user) return navigate("/");
+        fetchUserName();
+    }, [user, loading]);
+
+    var today = new Date()
+    var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+
     return (
         <>
             <Header />
             <BG>
                 <Wrapper>
-                    <div>
+                    Olá, {user.displayName}!
+                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                        <Statistics />
+                        <div style={{ width: "100%", display: "flex", justifyContent: "space-around", margin: "20px 0" }}>
+                            <Tasks />
+                            <User info={user} logout={logout} />
+                        </div>
                     </div>
                 </Wrapper>
             </BG>
-            {/* <div className="dashboard">
-                <div className="dashboard__container">
-                    Logged in as */}
-            {/* <div>{name}</div>
-                    <div>{user?.email}</div> */}
-            {/* <button className="dashboard__btn" onClick={logout}>
-                        Logout
-                    </button>
-                </div>
-            </div> */}
         </>
     );
 }
@@ -66,28 +69,14 @@ const BG = styled.div`
 
 const Wrapper = styled.div`
     margin: 90px 0 0 0; 
+    background-color: #E5E5E5; 
     width: 90vw; 
     height: 600px; 
-    background-color: #FFF; 
     display: flex; 
     flex-direction: column;
-
-
-`
-
-
-const TopContainer = styled.div`
-    border-bottom: 2px solid #E5E5E5; 
-    min-height: 75px; 
-    display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    font-weight: 500; 
-    padding: 0 20px 0 20px; 
-    font-size: 17px;
+`
+const Info = styled.div`
 `
 
-const BottomContainer = styled.div`
-    margin: 20px;
-    overflow-y: auto;
-`
