@@ -16,7 +16,7 @@ const ButtonStyle = styled.button`
 const Button = (props) => {
 
     return (
-        <ButtonStyle onClick={clickHandler}> {props.text}</ButtonStyle>
+        <ButtonStyle onClick={() => console.log("should change")}> {props.text}</ButtonStyle>
     );
 }
 
