@@ -1,9 +1,18 @@
 import styled from "styled-components";
-import Button from "../components/Button"
 import user from "../images/user.png"
 import { logout } from "../firebase/firebase";
+import { useNavigate } from "react-router-dom";
+
+
 
 const User = (props) => {
+    const nav = useNavigate()
+    function handleLogout() {
+        logout();
+        nav("/login");
+        console.log("pressed button")
+
+    }
 
     return (
         <Wrapper>
@@ -13,7 +22,7 @@ const User = (props) => {
                 {props.info.email}
             </Item>
             Editar perfil
-            <Button click={logout} text="Sair" />
+            <Button onClick={handleLogout} />Sair <Button />
         </Wrapper>
     );
 }
@@ -48,4 +57,15 @@ const Item = styled.div`
 const Title = styled.span`
     font-size: 20px;
     font-weight: 600;
+`
+
+const Button = styled.button`
+background-color: #6B0F1A;
+color: #FFF; 
+border: none;
+border-radius: 4px; 
+padding: 10px 20px; 
+text-transform: uppercase;
+font-family: 'Montserrat', sans-serif;
+cursor: pointer; 
 `

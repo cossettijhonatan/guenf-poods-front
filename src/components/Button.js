@@ -16,7 +16,7 @@ const ButtonStyle = styled.button`
 const Button = (props) => {
 
     return (
-        <ButtonStyle onClick={() => console.log("should change")}> {props.text}</ButtonStyle>
+        <ButtonStyle onClick={(props.handleLogout)}> {props.text}</ButtonStyle>
     );
 }
 
