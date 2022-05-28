@@ -11,12 +11,12 @@ import Pedidos from './pages/Pedidos'
 
 
 function App() {
-  console.log("será?")
   return (
     <div className="App">
       <Router>
         <Routes>
           < Route path="/" element={<LogIn />} />
+          < Route path="/login" element={<LogIn />} />
           <Route path="/home" element={<Home />} />
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/instituicoes" element={<Instituicoes />} />

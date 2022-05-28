@@ -2,18 +2,11 @@ import styled from "styled-components";
 import user from "../images/user.png"
 import { logout } from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 
 const User = (props) => {
-    const nav = useNavigate()
-    function handleLogout() {
-        logout();
-        nav("/login");
-        console.log("pressed button")
-
-    }
-
     return (
         <Wrapper>
             <img src={user} width="100px" style={{ borderRadius: "50%", border: "1px solid #6B0F1A" }} />
@@ -22,7 +15,7 @@ const User = (props) => {
                 {props.info.email}
             </Item>
             Editar perfil
-            <Button onClick={handleLogout} />Sair <Button />
+            <Button onClick={() => { logout() }}>Sair </ Button >
         </Wrapper>
     );
 }

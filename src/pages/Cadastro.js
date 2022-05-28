@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useHistory } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, signInWithGoogle, registerWithEmailAndPassword } from "../firebase/firebase";
 import { BG, Container, Title, Input, Button } from '../components/LoginStyle'
 import GoogleLogo from "../images/GoogleLogo";
@@ -10,17 +10,16 @@ function Cadastro() {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [user, loading, error] = useAuthState(auth);
-    const history = useHistory();
+    const navigate = useNavigate();
     const register = () => {
         if (!name) alert("Please enter name");
         registerWithEmailAndPassword(name, email, password);
     };
     useEffect(() => {
         if (loading) return;
-        if (user) history.replace("/home");
+        // if (user) history.replace("/home");
+        if (user) navigate("/home")
     }, [user, loading]);
-
-    console.log("aqui estou! ")
 
     return (
         <BG>
