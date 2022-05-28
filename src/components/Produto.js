@@ -16,7 +16,7 @@ cursor: pointer;
 const Produto = (props) => {
     console.log(props.preco.toFixed(2))
     return (
-        <Wrapper>
+        <Wrapper quantidade={props.quantidade}>
             <Field> {props.id} </Field>
             <Field> {props.nome} </Field>
             <Field> {props.quantidade} </Field>
@@ -36,6 +36,7 @@ const Wrapper = styled.div`
 
     align-items: center; 
     font-size: 15px;
+    background-color: ${props => props.quantidade < 500 ? 'rgba(158, 57, 57, 0.2)' : ''};
 
 `
 

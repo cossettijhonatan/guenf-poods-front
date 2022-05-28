@@ -55,7 +55,6 @@ const Produtos = () => {
                 setData({ nome: "", quantidade: "", preco: "" });
                 console.log(data);
             })
-        // navigate('/produtos')    
     }
 
     function handle(d) {
