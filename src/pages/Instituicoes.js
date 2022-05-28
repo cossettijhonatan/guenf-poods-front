@@ -7,12 +7,15 @@ import Instituicao from "../components/Instituicao";
 import InstituicaoFields from "../components/InstituicaoFields";
 import Header from "../components/Header";
 import Editar from "./EditarEmpresa";
+import Modal from "../components/Modal"
 
 
 const Cadastro = (props) => {
-    const [deleted, setDeleted] = useState(false)
+    const [toDelete, setToDelete] = useState(false)
+    const [isModalOpen, switchModal] = useState(false)
     const url = "http://localhost:3000/instituicaos";
-    let textButton = '+ Cadastrar nova instituição'
+    const aux = true
+    let textButton = '+ Cadastrar nova empresa'
     const [instituicoes, getInstituicoes] = useState('')
 
     useEffect(() => {
@@ -21,13 +24,12 @@ const Cadastro = (props) => {
 
     useEffect(() => {
         getAllInstituicoes()
-    }, [deleted])
+    }, [isModalOpen])
 
     const getAllInstituicoes = async () => {
         Axios.get(url)
             .then((response) => {
-                const allInstituicoes = response.data
-                getInstituicoes(allInstituicoes)
+                getInstituicoes(response.data)
             })
             .catch((e) => {
                 console.error(e);
@@ -38,9 +40,10 @@ const Cadastro = (props) => {
         <>
             <Header />
             <BG>
+                {isModalOpen && (<Modal id={toDelete} switchModal={switchModal} />)}
                 <Wrapper>
                     <TopContainer>
-                        Instituições
+                        Empresas
                         <Link to="/cadastrar-empresa">
                             <Button text={textButton} />
                         </Link>
@@ -51,13 +54,19 @@ const Cadastro = (props) => {
                             instituicoes.map((element, index) => (
                                 <Instituicao
                                     index={index}
+                                    id={element.id}
                                     key={element.id}
                                     nome={element.nomeFantasia}
                                     cnpj={element.cnpj}
                                     email={element.mail}
                                     endereco={element.endereco}
-                                    id={element.id}
-                                    setDeleted={setDeleted}
+                                    numero={element.numero}
+                                    bairro={element.bairro}
+                                    cep={element.cep}
+                                    cidade={element.cidade}
+                                    uf={element.uf}
+                                    setToDelete={setToDelete}
+                                    switchModal={switchModal}
                                     setEdit={props.setEdit}
                                 />
                             )
@@ -90,6 +99,7 @@ const Wrapper = styled.div`
     display: flex; 
     flex-direction: column;
     overflow-x: scroll;
+    position: absolute;
 `
 
 const TopContainer = styled.div`

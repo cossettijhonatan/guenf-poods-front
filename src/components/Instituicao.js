@@ -1,4 +1,4 @@
-import Axios from "axios";
+import axios from "axios";
 import styled from "styled-components";
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
@@ -15,32 +15,24 @@ cursor: pointer;
 `
 
 const Instituicao = (props) => {
-    const url = `http://localhost:3000/instituicaos/${props.id}`
-    const handlerDelete = () => {
-        Axios.delete(url)
-            .then((response) => {
-                console.log(response)
-                props.setDeleted(true)
-            })
-            .catch((e) => {
-                console.error(e);
-            })
-    }
 
+    const deleteHandler = () => {
+        props.setToDelete(props.id)
+        props.switchModal(true)
+    }
     const editHanlder = () => {
         props.setEdit(props.id)
     }
-
     return (
         <>
             <Wrapper color={props.index}>
                 <Field> {props.nome} </Field>
                 <Field> {props.cnpj} </Field>
                 <Field> {props.email} </Field>
-                <Field> {props.endereco} </Field>
+                <Field> {props.endereco}, {props.numero}, {props.bairro}. {props.cep} - {props.cidade}/{props.uf} </Field>
                 <ButtonArea>
-                    <Button onClick={handlerDelete}> Deletar </Button>
-                    <Button onClick={editHanlder}><Link to={"/editar-empresa"}> Editar</Link> </Button>
+                    <Button onClick={deleteHandler}> Deletar </Button>
+                    <Button onClick={editHanlder}><StyledLink to={"/editar-empresa"}> Editar</StyledLink> </Button>
                 </ButtonArea>
             </Wrapper>
         </>
@@ -78,3 +70,17 @@ justify-content: space-between;
 align-items: center; 
 font-weight: 300;
 `
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    &:focus, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: #6B0F1A; 
+    }
+`;
