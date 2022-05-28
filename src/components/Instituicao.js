@@ -1,6 +1,6 @@
 import Axios from "axios";
 import styled from "styled-components";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
 const Button = styled.button`
@@ -15,25 +15,35 @@ cursor: pointer;
 `
 
 const Instituicao = (props) => {
-    // const url = `http://localhost:3000/instituicaos/${props.id}`
-    // const handlerDelete = () => {
-    //     Axios.delete(url)
-    //         .then((response) => {
+    const url = `http://localhost:3000/instituicaos/${props.id}`
+    const handlerDelete = () => {
+        Axios.delete(url)
+            .then((response) => {
+                console.log(response)
+                props.setDeleted(true)
+            })
+            .catch((e) => {
+                console.error(e);
+            })
+    }
 
-    //             console.log(response)
-    //         })
-    //         .catch((e) => {
-    //             console.error(e);
-    //         })
-    // }
+    const editHanlder = () => {
+        props.setEdit(props.id)
+    }
+
     return (
-        <Wrapper>
-            <Field> {props.nome} </Field>
-            <Field> {props.cnpj} </Field>
-            <Field> {props.email} </Field>
-            <Field> {props.endereco} </Field>
-            {/* <Button onClick={handlerDelete()}> delete </Button> */}
-        </Wrapper>
+        <>
+            <Wrapper color={props.index}>
+                <Field> {props.nome} </Field>
+                <Field> {props.cnpj} </Field>
+                <Field> {props.email} </Field>
+                <Field> {props.endereco} </Field>
+                <ButtonArea>
+                    <Button onClick={handlerDelete}> Deletar </Button>
+                    <Button onClick={editHanlder}><Link to={"/editar-empresa"}> Editar</Link> </Button>
+                </ButtonArea>
+            </Wrapper>
+        </>
     )
 }
 
@@ -41,20 +51,30 @@ export default Instituicao;
 
 const Wrapper = styled.div`
     height: 40px; 
-    display: grid; 
-    grid-template-columns: 1fr 1fr 1fr 1fr; 
-    padding: 10px 0; 
-    border-top: 1px solid #111;
-
+    display: flex; 
+    justify-content: space-between;
+    padding: 10px;
     align-items: center; 
     font-size: 15px;
+    background-color: ${props => props.color % 2 == 0 ? 'none' : '#c4c4c433'};
+    background-size: cover;
 
 `
 
 const Field = styled.li`
-    width: 250px; 
+    min-width: 250px; 
+    width: 250px;
     list-style: none;
     display: flex; 
     align-items: center; 
     font-weight: 300;
+`
+const ButtonArea = styled.li`
+min-width: 250px; 
+width: 250px;
+list-style: none;
+display: flex; 
+justify-content: space-between;
+align-items: center; 
+font-weight: 300;
 `

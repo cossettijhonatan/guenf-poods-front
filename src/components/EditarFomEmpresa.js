@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-// import validator from 'validator' 
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Button from "./Button";
 import Axios from "axios";
 import { FormContainer, IdContainer, EndContainer, Title, Label, Input, InnerContainer, Item, ContentContainer, ButtonContainer } from './Style'
 
-const Form = () => {
-    let textButton = 'Cadastrar'
-    const url = "http://localhost:3000/instituicaos"
+const Form = (props) => {
+    const url = `http://localhost:3000/instituicaos/${props.id}`
+    const [empresaData, setEmpresaData] = useState("");
     const navigate = useNavigate();
     const [data, setData] = useState({
         nomeFantasia: "",
@@ -24,9 +23,33 @@ const Form = () => {
         complemento: ""
     })
 
+    const getEmpresa = async () => {
+        Axios.get(url)
+            .then((response) => {
+                setEmpresaData(response.data)
+            })
+            .catch((e) => {
+                console.error(e);
+            })
+    }
+
+    useEffect(() => {
+        getEmpresa();
+    }, [url])
+
+    console.log(empresaData)
+
+    useEffect(() => {
+        if (empresaData) {
+            setData(empresaData);
+        }
+    }, [empresaData])
+
+    let textButton = 'Atualizar'
     function submit(s) {
         s.preventDefault();
-        Axios.post(url, {
+
+        Axios.put(url, {
             nomeFantasia: data.nomeFantasia,
             razaoSocial: data.razaoSocial,
             mail: data.mail,
@@ -41,9 +64,10 @@ const Form = () => {
             complemento: data.complemento
         })
             .then(res => {
+                console.log(res)
                 console.log(res.data)
             })
-        navigate('/empresas')
+        navigate("/empresas")
     }
 
     function handle(d) {
@@ -51,7 +75,6 @@ const Form = () => {
         newData[d.target.id] = d.target.value;
         setData(newData);
     }
-
 
     return (
         <FormContainer onSubmit={(s) => submit(s)}>
@@ -124,4 +147,4 @@ const Form = () => {
 //         setEmailError('Insira um email válido. ')
 //     }
 // }
-export default Form;
+export default Form; 

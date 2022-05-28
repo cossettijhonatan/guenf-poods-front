@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import Form from "../components/EditarFomEmpresa";
 import Header from "../components/Header";
-import Form from "../components/InstituicaoForm";
+import Context from "./context";
 
 const BG = styled.div`
     background-color: #E5E5E5; 
@@ -34,7 +36,9 @@ const TopContainer = styled.div`
 `
 
 
-const Cadastro = () => {
+const Editar = (props) => {
+    const id = useContext(Context)
+    console.log(id)
     return (
         <>
             <Header />
@@ -43,11 +47,11 @@ const Cadastro = () => {
                     <TopContainer>
                         Instituições
                     </TopContainer>
-                    <Form />
+                    <Form id={props.id} />
                 </Wrapper>
             </BG>
         </>
     );
 };
 
-export default Cadastro; 
+export default Editar; 

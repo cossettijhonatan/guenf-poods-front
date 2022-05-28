@@ -1,27 +1,32 @@
 import { Link } from "react-router-dom";
-import react, { useState, useEffect } from "react";
+import react, { useState, useEffect, useContext } from "react";
 import Axios from "axios";
 import styled from "styled-components";
 import Button from "../components/Button";
 import Instituicao from "../components/Instituicao";
 import InstituicaoFields from "../components/InstituicaoFields";
 import Header from "../components/Header";
+import Editar from "./EditarEmpresa";
 
 
-const Cadastro = () => {
-
+const Cadastro = (props) => {
+    const [deleted, setDeleted] = useState(false)
     const url = "http://localhost:3000/instituicaos";
+    let textButton = '+ Cadastrar nova instituição'
     const [instituicoes, getInstituicoes] = useState('')
 
     useEffect(() => {
         getAllInstituicoes()
     }, [])
 
+    useEffect(() => {
+        getAllInstituicoes()
+    }, [deleted])
+
     const getAllInstituicoes = async () => {
         Axios.get(url)
             .then((response) => {
                 const allInstituicoes = response.data
-                console.log(allInstituicoes)
                 getInstituicoes(allInstituicoes)
             })
             .catch((e) => {
@@ -29,13 +34,6 @@ const Cadastro = () => {
             })
     }
 
-
-    useEffect(() => {
-        console.log(Array.isArray(instituicoes));
-    }, [instituicoes])
-
-
-    let textButton = '+ Cadastrar nova instituição'
     return (
         <>
             <Header />
@@ -43,21 +41,24 @@ const Cadastro = () => {
                 <Wrapper>
                     <TopContainer>
                         Instituições
-                        <Link to="/cadastrar-instituicao">
+                        <Link to="/cadastrar-empresa">
                             <Button text={textButton} />
                         </Link>
                     </TopContainer>
                     <BottomContainer>
                         <InstituicaoFields />
                         {Array.isArray(instituicoes) &&
-                            instituicoes.map(element => (
+                            instituicoes.map((element, index) => (
                                 <Instituicao
+                                    index={index}
                                     key={element.id}
                                     nome={element.nomeFantasia}
                                     cnpj={element.cnpj}
                                     email={element.mail}
                                     endereco={element.endereco}
                                     id={element.id}
+                                    setDeleted={setDeleted}
+                                    setEdit={props.setEdit}
                                 />
                             )
                             )}
@@ -66,6 +67,7 @@ const Cadastro = () => {
             </BG>
         </>
     );
+
 };
 
 export default Cadastro;
@@ -87,6 +89,7 @@ const Wrapper = styled.div`
     background-color: #FFF; 
     display: flex; 
     flex-direction: column;
+    overflow-x: scroll;
 `
 
 const TopContainer = styled.div`

@@ -8,25 +8,38 @@ const InstituicaoFields = () => {
             <Field> CNPJ </Field>
             <Field> Email </Field>
             <Field> Endereco </Field>
+            <ButtonArea />
         </Wrapper>
     );
 
 }
 
 const Wrapper = styled.div`
-    display: grid; 
-    grid-template-columns: 1fr 1fr 1fr 1fr; 
-    padding: 4px 0 16px 0;
+    display: flex; 
+    justify-content: space-between;
+    padding: 4px 10px 16px 10px;
+
     
 `
 
 const Field = styled.li`
+    min-width: 250px; 
+    width: 250px;
     font-weight: 600;
     font-size: 17px;
     width: 250px; 
     list-style: none;
 `
 
+const ButtonArea = styled.li`
+min-width: 250px; 
+width: 250px;;
+list-style: none;
+display: flex; 
+justify-content: space-between;
+align-items: center; 
+font-weight: 300;
+`
 
 
 
