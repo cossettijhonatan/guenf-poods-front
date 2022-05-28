@@ -46,7 +46,8 @@ function Header() {
                 <Menu>
                     <StyledLink to="/home" ><Logo width="42px" height="42px" color="#6B0F1A" /></StyledLink>
                     <StyledLink to="/empresas">EMPRESAS</StyledLink>
-                    <StyledLink to="/pedidos">PEDIDOS</StyledLink>
+                    <StyledLink to=""> PEDIDOS </StyledLink>
+                    <StyledLink to=""> RELATÓRIOS </StyledLink>
                     <StyledLink to="/produtos">PRODUTOS</StyledLink>
                     <StyledLink to="/sobre">SOBRE</StyledLink>
                 </Menu>

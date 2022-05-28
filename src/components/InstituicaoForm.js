@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 // import validator from 'validator' 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from "./Button";
 import Axios from "axios";
 import { FormContainer, IdContainer, EndContainer, Title, Label, Input, InnerContainer, Item, ContentContainer, ButtonContainer } from './Style'
+import styled from "styled-components";
 
 const Form = () => {
     let textButton = 'Cadastrar'
@@ -106,22 +107,35 @@ const Form = () => {
                 </EndContainer>
             </ContentContainer>
 
-            <ButtonContainer>
-                <Button type="submit" text={textButton} >
-                </Button>
-            </ButtonContainer>
+            <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                <div style={{ width: "30%", display: "flex", justifyContent: "space-around" }}>
+                    <ButtonStyle><StyledLink to={"/empresas"}> CANCELAR</StyledLink> </ButtonStyle>
+                    <Button type="submit" text={textButton} />
+                </div>
+            </div>
         </FormContainer>
     );
 };
 
-// const [emailError, setEmailError] = useState('')
-//     var email = e.target.value
-// const validateEmail = (e) => {
-
-//     if (validator.isEmail(email)) {
-//         setEmailError('')
-//     } else {
-//         setEmailError('Insira um email válido. ')
-//     }
-// }
 export default Form;
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    &:focus, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`
+
+const ButtonStyle = styled.button`
+    background-color: #6B0F1A;
+    color: #FFF; 
+    border: none;
+    border-radius: 4px; 
+    padding: 10px 20px; 
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer; 
+`

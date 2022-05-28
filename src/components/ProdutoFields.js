@@ -17,7 +17,7 @@ const Wrapper = styled.div`
     display: grid; 
     grid-template-columns: 130px 170px 190px 100px; 
     padding: 4px 0 16px 0;
-    
+    position: sticky;
 `
 
 const Field = styled.li`

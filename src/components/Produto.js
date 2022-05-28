@@ -33,7 +33,6 @@ const Wrapper = styled.div`
     grid-template-columns: 130px 170px 190px 100px;  
     padding: 10px 0; 
     border-top: 1px solid #111;
-
     align-items: center; 
     font-size: 15px;
     background-color: ${props => props.quantidade < 500 ? 'rgba(158, 57, 57, 0.2)' : ''};

@@ -80,7 +80,4 @@ const StyledLink = styled(Link)`
         text-decoration: none;
     }
 
-    &:hover {
-        color: #6B0F1A; 
-    }
 `;
