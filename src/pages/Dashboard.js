@@ -6,8 +6,6 @@ import Header from "../components/Header";
 import styled from "styled-components";
 
 const Dashboard = (props) => {
-    console.log("testando dash")
-
     return (
         <>
             <Header />
