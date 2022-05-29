@@ -29,7 +29,7 @@ function Home(props) {
 
     useEffect(() => {
         if (!user) navigate("/login")
-    }, [])
+    }, [user])
 
     if (user) {
         return (<Dashboard user={user} setLogout={setLogout} />)

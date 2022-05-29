@@ -9,7 +9,6 @@ import InstituicaoCadastro from './pages/InstituicaoCadastro'
 import EditarEmpresa from './pages/EditarEmpresa'
 import Produtos from './pages/Produtos'
 import Pedidos from './pages/Pedidos'
-import Context from './pages/context';
 
 function App() {
   const [edit, setEdit] = useState("")

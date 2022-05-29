@@ -57,7 +57,8 @@ const Produtos = (props) => {
             preco: data.preco
         })
             .then((res) => {
-                setSentData(true);
+                setSentData(true)
+                setTimeout(() => { setSentData(false); }, 2000);
                 setData({ nome: "", quantidade: "", preco: "" });
             })
     }
@@ -104,31 +105,33 @@ const Produtos = (props) => {
                             )}
                             {!edit && (
                                 <Container>
-                                    <p style={{ fontWeight: "600", fontSize: "17px", paddingBottom: "15px" }}>Cadastrar novo produto</p>
-                                    <FormContainer onSubmit={(s) => submit(s)}>
-                                        <WrapperForm>
-                                            <ContentContainer>
-                                                <Item>
-                                                    <Label htmlFor="nome">Nome: </Label>
-                                                    <Input onChange={(d) => handle(d)} value={data.nome} type="text" name="nome" id="nome" required />
-                                                </Item>
-                                                <Item>
-                                                    <Label htmlFor="quantidade">Quantidade: </Label>
-                                                    <Input onChange={(d) => handle(d)} value={data.quantidade} type="number" name="quantidade" id="quantidade" required />
-                                                </Item>
-                                                <Item>
-                                                    <Label htmlFor="preco">Preço: </Label>
-                                                    <Input onChange={(d) => handle(d)} value={data.preco} type="text" name="preco" id="preco" required />
-                                                </Item>
-                                            </ContentContainer>
-                                        </WrapperForm>
-                                        <ButtonContainer>
-                                            <Button type="submit" text={textButton} />
-                                        </ButtonContainer>
-                                    </FormContainer>
-                                    <div style={{ marginTop: "10px" }}>
-                                        <Button func={() => setData({ nome: "", quantidade: "", preco: "" })} text={"Limpar campos"} />
-                                    </div>
+                                    {!sentData &&
+                                        <FormContainer onSubmit={(s) => submit(s)}>
+                                            <p style={{ fontWeight: "600", fontSize: "17px", paddingBottom: "15px", width: "100%", display: "flex", justifyContent: "center" }}>Cadastrar novo produto</p>
+                                            <WrapperForm>
+                                                <ContentContainer>
+                                                    <Item>
+                                                        <Label htmlFor="nome">Nome: </Label>
+                                                        <Input onChange={(d) => handle(d)} value={data.nome} type="text" name="nome" id="nome" required />
+                                                    </Item>
+                                                    <Item>
+                                                        <Label htmlFor="quantidade">Quantidade: </Label>
+                                                        <Input onChange={(d) => handle(d)} value={data.quantidade} type="number" name="quantidade" id="quantidade" required />
+                                                    </Item>
+                                                    <Item>
+                                                        <Label htmlFor="preco">Preço: </Label>
+                                                        <Input onChange={(d) => handle(d)} value={data.preco} type="text" name="preco" id="preco" required />
+                                                    </Item>
+                                                </ContentContainer>
+                                            </WrapperForm>
+                                            <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                                                <div style={{ marginTop: "10px", width: "50%", display: "flex", justifyContent: "space-around" }}>
+                                                    <Button func={() => setData({ nome: "", quantidade: "", preco: "" })} text={"Limpar campos"} />
+                                                    <Button type="submit" text={textButton} />
+                                                </div>
+                                            </div>
+                                        </FormContainer>
+                                    }
                                     {sentData &&
                                         <ProdutoSuccess text={"Produto cadastrado com sucesso!"}></ProdutoSuccess>}
                                 </Container>

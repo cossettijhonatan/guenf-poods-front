@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import validator from 'validator' 
-import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import Button from "./Button";
 import axios from "axios";
@@ -40,7 +38,7 @@ const EditarProduto = (props) => {
         })
             .then(() => {
                 setSent(true);
-                setTimeout(() => { props.setEdit(false); }, 3000);
+                setTimeout(() => { props.setEdit(false); }, 2000);
             })
     }
 
@@ -57,8 +55,8 @@ const EditarProduto = (props) => {
 
     return (
         <>
-            <FormContainer onSubmit={(s) => submit(s)}>
-                {!sent &&
+            {!sent &&
+                <FormContainer onSubmit={(s) => submit(s)}>
                     <>
                         <p style={{ fontWeight: "600", fontSize: "17px", paddingBottom: "15px", width: "100%", display: "flex", justifyContent: "center" }}>Atualizar  produto</p>
                         <Wrapper>
@@ -77,17 +75,17 @@ const EditarProduto = (props) => {
                                 </Item>
                             </ContentContainer>
                         </Wrapper>
-                        <ButtonContainer>
-                            <Button type="submit" text={textButton} />
-                        </ButtonContainer>
+                        <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                            <div style={{ marginTop: "10px", width: "50%", display: "flex", justifyContent: "space-around" }}>
+                                <Button func={cancelHandler} text={"Cancelar"} />
+                                <Button type="submit" text={textButton} />
+                            </div>
+                        </div>
                     </>
-                }
-                {sent &&
-                    <ProdutoSuccess text={"Produto atualizado com sucesso!"}></ProdutoSuccess>}
-            </FormContainer>
-            <div style={{ marginTop: "10px" }}>
-                <Button func={cancelHandler} text={"Cancelar"} />
-            </div>
+                </FormContainer>
+            }
+            {sent &&
+                <ProdutoSuccess text={"Produto atualizado com sucesso!"}></ProdutoSuccess>}
         </>
     );
 };
