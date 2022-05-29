@@ -21,6 +21,7 @@ function App() {
           < Route path="/login" element={<LogIn setUser={setUser} />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/sobre" element={<Sobre user={user} />} />
           <Route path="/empresas" element={<Instituicoes setEdit={setEdit} user={user} />} />
           <Route path="/cadastrar-empresa" element={<InstituicaoCadastro user={user} />} />

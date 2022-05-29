@@ -72,6 +72,10 @@ const H3 = styled.h3`
     font-weight: 700; 
     margin: 12px 0;
 `
+const H2 = styled.h2` 
+    font-weight: 600; 
+    margin: 30px 0 10px ;
+`
 
 const Sobre = (props) => {
     if (!!props.user) {
@@ -83,22 +87,30 @@ const Sobre = (props) => {
                         <TextSide>
                             <TextWrapper>
                                 <Text>
-                                    <H3> Sistema de Distribuição de Alimentos - SDA </H3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id eu nisl nunc mi ipsum faucibus vitae aliquet. Morbi enim nunc faucibus a. Lectus vestibulum mattis ullamcorper velit. Ac tincidunt vitae semper quis lectus nulla at volutpat diam. Proin fermentum leo vel orci porta non pulvinar. Curabitur vitae nunc sed velit dignissim sodales ut eu sem. Dolor sed viverra ipsum nunc. Interdum velit euismod in pellentesque massa. Placerat duis ultricies lacus sed turpis tincidunt. Ultricies leo integer malesuada nunc vel. Enim ut sem viverra aliquet. Egestas erat imperdiet sed euismod nisi. Nisi scelerisque eu ultrices vitae auctor eu augue ut. Euismod in pellentesque massa placerat duis ultricies lacus sed. Id volutpat lacus laoreet non curabitur gravida. Malesuada nunc vel risus commodo viverra maecenas.
+                                    <H3> Sistema de Distribuidora de Alimentos - SDA </H3>
+                                    <H2> O que é SDA? </H2>
+                                    <p style={{ textAlign: "justify" }}> SDA é um ERP (do inglês "Enterprise Resource Planning", que traduzindo significa "Planejamento  dos Recursos da Empresa) é um sistema de
+                                        gestão empresarial que serve para automatizar processos, integrar informações de diferentes setores
+                                        de uma empresa e organizar o fluxo de trabalho da mesma.
                                     </p>
-                                    <p>
-                                        Et voluptatibus illum qui neque quaerat ut quidem esse et reiciendis fugit est libero dolores ab error dolorem est fugiat eveniet. Eum consequatur sunt et totam accusamus aut aliquid amet est omnis sint ab galisum autem ab inventore odio. Id voluptas unde At mollitia nostrum aut mollitia blanditiis sed pe
+                                    <H2> Informações do Sistema </H2>
+                                    <p style={{ textAlign: "justify" }}>
+                                        Este software foi desenvolvido utilizando conceitos de Orientação a Objetos a fim de obter nota para aprovação na disciplina Paradigma Orientado à Objetos para Desenvolvimento de Software, seu propósito é apenas educacional.
                                     </p>
-                                    <H3> Informações do Sistema </H3>
-                                    <p>
-                                        Et voluptatibus illum qui neque quaerat ut quidem esse et reiciendis fugit est libero dolores ab error dolorem est fugiat eveniet. Eum consequatur sunt et totam accusamus aut aliquid amet est omnis sint ab galisum autem ab inventore odio. Id voluptas unde At mollitia nostrum aut mollitia blanditiis sed pe
-                                        Lorem ipsum dolor sit amet. Id dolorem dolor aut voluptatem temporibus sit nobis.
-                                    </p>
+                                    <div style={{ margin: "10px 0 0 0 " }}>
+                                        <ul>
+                                            <li> GNU GENERAL PUBLIC LICENSE</li>
+                                            <li> Copyright (c) 2022 - Ausberto S. Castro e Maria Luiza de Souza Stellet </li>
+                                            <li> Versão atual do software <b>1.0.2</b> </li>
+                                            <li> Universidade Estadual do Norte Fluminense Darcy Ribeiro - UENF </li>
+                                            <li> Centro de Ciência e Tecnologia - CCT</li>
+                                            <li> Bacharel em Ciência da Computação - CC </li>
+                                        </ul>
+                                    </div>
                                 </Text>
                                 <Buttons>
                                     <Button>Download do Manual</Button>
-                                    <Button>Entre em contato</Button>
+                                    <Button><StyledLink href="mailto:marialuiza@pq.uenf.br,ascv@uenf.br">Entre em contato </StyledLink></Button>
                                 </Buttons>
                             </TextWrapper>
                         </TextSide>
@@ -116,5 +128,16 @@ const Sobre = (props) => {
         return (<NotAllowed />)
     }
 }
+
+
+const StyledLink = styled.a`
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    &:focus, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`
 
 export default Sobre; 

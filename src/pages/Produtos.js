@@ -6,7 +6,7 @@ import Button from "../components/Button";
 import Produto from "../components/Produto";
 import ProdutoFields from "../components/ProdutoFields";
 import ProdutoSuccess from "../components/ProdutoSuccess";
-import { IdContainer, EndContainer, Title, Label, Input, InnerContainer, ButtonContainer } from '../components/Style'
+import { IdContainer, EndContainer, Title, Label, Input, InnerContainer } from '../components/Style'
 import Header from "../components/Header";
 import NotAllowed from "./NotAllowed";
 
@@ -163,8 +163,13 @@ const BottomContainer = styled.div`
     margin: 20px;
     overflow-y: hidden;
     display: flex; 
-    
 `
+
+export const ButtonContainer = styled.div`
+width: 100%; 
+display: flex; 
+justify-content: center;
+`;
 
 const List = styled.div`
     width: 50%;
