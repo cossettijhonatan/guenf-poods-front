@@ -45,7 +45,7 @@ const Editar = (props) => {
             <BG>
                 <Wrapper>
                     <TopContainer>
-                        Instituições
+                        Empresas
                     </TopContainer>
                     <Form id={props.id} />
                 </Wrapper>

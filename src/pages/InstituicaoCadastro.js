@@ -41,7 +41,7 @@ const Cadastro = () => {
             <BG>
                 <Wrapper>
                     <TopContainer>
-                        Instituições
+                        Empresas
                     </TopContainer>
                     <Form />
                 </Wrapper>
