@@ -6,9 +6,10 @@ import Button from "../components/Button";
 import Pedido from "../components/Pedido"
 import RelatorioFields from "../components/PedidoFields";
 import Header from "../components/Header";
+import NotAllowed from "./NotAllowed";
 
 
-const Cadastro = () => {
+const Cadastro = (props) => {
 
     const url = "http://localhost:3000/pedidos";
     const [pedidos, getPedidos] = useState('')
@@ -37,36 +38,40 @@ const Cadastro = () => {
 
 
     let textButton = '+ Cadastrar novo pedido'
-    return (
-        <>
-            <Header />
-            <BG>
-                <Wrapper>
-                    <TopContainer>
-                        Pedidos
-                        <Link to="/pedidos">
-                            <Button text={textButton} />
-                        </Link>
-                    </TopContainer>
-                    <BottomContainer>
-                        <RelatorioFields />
-                        {Array.isArray(pedidos) &&
-                            pedidos.map(element => (
-                                <Pedido
-                                    key={element.id}
-                                    nome={element.Instituicao}
-                                    data={element.data}
-                                    valor={element.valor}
-                                    status={element.status}
-                                    id={element.id}
-                                />
-                            )
-                            )}
-                    </BottomContainer>
-                </Wrapper>
-            </BG>
-        </>
-    );
+    if (!!props.user) {
+        return (
+            <>
+                <Header />
+                <BG>
+                    <Wrapper>
+                        <TopContainer>
+                            Pedidos
+                            <Link to="/pedidos">
+                                <Button text={textButton} />
+                            </Link>
+                        </TopContainer>
+                        <BottomContainer>
+                            <RelatorioFields />
+                            {Array.isArray(pedidos) &&
+                                pedidos.map(element => (
+                                    <Pedido
+                                        key={element.id}
+                                        nome={element.Instituicao}
+                                        data={element.data}
+                                        valor={element.valor}
+                                        status={element.status}
+                                        id={element.id}
+                                    />
+                                )
+                                )}
+                        </BottomContainer>
+                    </Wrapper>
+                </BG>
+            </>
+        );
+    } else {
+        return (<NotAllowed />)
+    }
 };
 
 export default Cadastro;

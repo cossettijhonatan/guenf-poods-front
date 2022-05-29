@@ -13,21 +13,20 @@ import Context from './pages/context';
 
 function App() {
   const [edit, setEdit] = useState("")
+  const [user, setUser] = useState("")
   return (
     <div className="App">
-      {console.log(edit)}
       <Router>
         <Routes>
-          < Route path="/" element={<LogIn />} />
-          < Route path="/login" element={<LogIn />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/sobre" element={<Sobre />} />
-          <Route path="/empresas" element={<Instituicoes setEdit={setEdit} />} />
-          <Route path="/cadastrar-empresa" element={<InstituicaoCadastro />} />
-          <Route path="/editar-empresa" element={<EditarEmpresa id={edit} />} />
-          <Route path="/produtos" element={<Produtos />} />
-          <Route path="/pedidos" element={<Pedidos />} />
+          < Route path="/login" element={<LogIn setUser={setUser} />} />
           <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/sobre" element={<Sobre user={user} />} />
+          <Route path="/empresas" element={<Instituicoes setEdit={setEdit} user={user} />} />
+          <Route path="/cadastrar-empresa" element={<InstituicaoCadastro user={user} />} />
+          <Route path="/editar-empresa" element={<EditarEmpresa id={edit} user={user} />} />
+          <Route path="/produtos" element={<Produtos user={user} />} />
+          <Route path="/pedidos" element={<Pedidos user={user} />} />
         </Routes>
       </Router>
 

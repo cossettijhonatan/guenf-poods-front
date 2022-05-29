@@ -3,12 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth, signInWithGoogle } from "../firebase/firebase";
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useAuthState } from "react-firebase-hooks/auth";
-import styled from "styled-components";
 import GoogleLogo from "../images/GoogleLogo";
 import { BG, Container, Title, Input, Button } from '../components/LoginStyle'
 
-
-function SignIn() {
+function SignIn(props) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +17,10 @@ function SignIn() {
       // maybe trigger a loading screen
       return;
     }
-    if (user) navigate("/home");
+    if (user) {
+      navigate("/home");
+      props.setUser(user)
+    }
   }, [user, loading]);
   return (
     <BG>

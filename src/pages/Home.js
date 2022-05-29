@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-// import "./Dashboard.css";
 import { auth, db, logout } from "../firebase/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Dashboard from "./Dashboard";
-import Login from "./LogIn"
+import NotAllowed from "./NotAllowed";
 
-
-
-function Home() {
+function Home(props) {
     const [user, loading, error] = useAuthState(auth);
+    const [loggedout, setLogout] = useState(false)
     const [name, setName] = useState("");
     const navigate = useNavigate();
     const fetchUserName = async () => {
@@ -29,18 +27,12 @@ function Home() {
         fetchUserName();
     }, [user, loading]);
 
+    useEffect(() => {
+        if (!user) navigate("/login")
+    }, [])
+
     if (user) {
-        return (
-            <>
-                <Dashboard user={user} />
-            </>
-        )
-    } else {
-        return (
-            <>
-                <Login />
-            </>
-        )
+        return (<Dashboard user={user} setLogout={setLogout} />)
     }
 }
 export default Home;

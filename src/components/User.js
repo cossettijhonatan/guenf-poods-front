@@ -1,28 +1,35 @@
 import styled from "styled-components";
 import user from "../images/user.png"
 import { logout } from "../firebase/firebase";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-
-
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const User = (props) => {
+    const [loggedout, setLogout] = useState(false)
+    const navigate = useNavigate()
+    async function logoutHandler() {
+        await logout();
+        setLogout(true);
+        console.log("testessss")
+        navigate("/login")
+    }
+
     return (
-        <Wrapper>
+        <WrapperUser>
             <img src={user} width="100px" style={{ borderRadius: "50%", border: "1px solid #6B0F1A" }} />
-            <Item>
-                <Title> {props.info.displayName} </Title>
+            <ItemUser>
+                <TitleUser> {props.info.displayName} </TitleUser>
                 {props.info.email}
-            </Item>
+            </ItemUser>
             Editar perfil
-            <Button onClick={() => { logout() }}>Sair </ Button >
-        </Wrapper>
+            <ButtonUser onClick={logoutHandler}><StyledLink to={"/login"}> SAIR </StyledLink></ ButtonUser >
+        </WrapperUser>
     );
 }
 
 export default User
 
-const Wrapper = styled.div`
+const WrapperUser = styled.div`
     background-color: white;
     border-radius: 8px;
     display: flex;
@@ -35,7 +42,7 @@ const Wrapper = styled.div`
     width: calc(100% / 2.8);
 `
 
-const Item = styled.div`
+const ItemUser = styled.div`
     height: 80px;    
     color: black;
     margin: 12px 10px;
@@ -47,12 +54,12 @@ const Item = styled.div`
 
     border-left: 3px solid #6B0F1A;
 `
-const Title = styled.span`
+const TitleUser = styled.span`
     font-size: 20px;
     font-weight: 600;
 `
 
-const Button = styled.button`
+const ButtonUser = styled.button`
 background-color: #6B0F1A;
 color: #FFF; 
 border: none;
@@ -61,4 +68,13 @@ padding: 10px 20px;
 text-transform: uppercase;
 font-family: 'Montserrat', sans-serif;
 cursor: pointer; 
+`
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    &:focus, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
 `

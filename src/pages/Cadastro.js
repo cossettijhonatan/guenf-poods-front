@@ -60,7 +60,7 @@ function Cadastro() {
                     </div>
                 </div>
                 <div style={{ fontSize: "13px" }} >
-                    Já possui uma conta? <Link to="/">Entre</Link> agora.
+                    Já possui uma conta? <Link to="/login">Entre</Link> agora.
                 </div>
             </Container >
         </BG >
