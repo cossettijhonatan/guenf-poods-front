@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 const ProdutoSuccess = (props) => {
     return (
         <Wrapper>
-            <h4> <span style={{ color: "#6cc070", fontWeight: "700", marginRight: "6px" }}>✓</span> Produto cadastrado com sucesso!</h4>
+            <h4> <span style={{ color: "#6cc070", fontWeight: "700", marginRight: "6px" }}>✓</span> {props.text}</h4>
         </Wrapper>
     );
 }

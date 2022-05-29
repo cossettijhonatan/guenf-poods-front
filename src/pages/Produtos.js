@@ -9,6 +9,7 @@ import ProdutoSuccess from "../components/ProdutoSuccess";
 import { IdContainer, EndContainer, Title, Label, Input, InnerContainer } from '../components/Style'
 import Header from "../components/Header";
 import NotAllowed from "./NotAllowed";
+import EditarProduto from "../components/EditarProduto";
 
 
 const Produtos = (props) => {
@@ -16,6 +17,8 @@ const Produtos = (props) => {
     const url = "http://localhost:3000/produtos";
     const [produtos, getProdutos] = useState('')
     const [sentData, setSentData] = useState(false);
+    const [edit, setEdit] = useState(false)
+    const [edited, setEdited] = useState(false)
     const [data, setData] = useState({
         nome: "",
         quantidade: "",
@@ -27,6 +30,10 @@ const Produtos = (props) => {
     }, [])
 
     useEffect(() => {
+        !edit && getAllprodutos()
+    }, [edit])
+
+    useEffect(() => {
         sentData &&
             getAllprodutos()
     }, [sentData])
@@ -34,14 +41,13 @@ const Produtos = (props) => {
     const getAllprodutos = async () => {
         Axios.get(url)
             .then((response) => {
-                const allprodutos = response.data
-                getProdutos(allprodutos)
-                console.log('res', allprodutos)
+                getProdutos(response.data)
             })
             .catch((e) => {
                 console.error(e);
             })
     }
+    console.log(produtos)
 
     function submit(s) {
         s.preventDefault();
@@ -52,9 +58,7 @@ const Produtos = (props) => {
         })
             .then((res) => {
                 setSentData(true);
-
                 setData({ nome: "", quantidade: "", preco: "" });
-                console.log(data);
             })
     }
 
@@ -64,6 +68,8 @@ const Produtos = (props) => {
         setData(newData);
         setSentData(false)
     }
+
+    console.log(props.user, edit)
 
     if (!!props.user) {
         return (
@@ -85,37 +91,48 @@ const Produtos = (props) => {
                                             nome={element.nome}
                                             quantidade={element.quantidade}
                                             preco={element.preco}
+                                            setEdit={setEdit}
                                         />
                                     )
                                     )}
 
                             </List>
-                            <Cadastro>
-                                <p style={{ fontWeight: "600", fontSize: "17px", paddingBottom: "15px" }}>Cadastrar novo produto</p>
-                                <FormContainer onSubmit={(s) => submit(s)}>
-                                    <WrapperForm>
-                                        <ContentContainer>
-                                            <Item>
-                                                <Label htmlFor="nome">Nome: </Label>
-                                                <Input onChange={(d) => handle(d)} value={data.nome} type="text" name="nome" id="nome" />
-                                            </Item>
-                                            <Item>
-                                                <Label htmlFor="quantidade">Quantidade: </Label>
-                                                <Input onChange={(d) => handle(d)} value={data.quantidade} type="number" name="quantidade" id="quantidade" />
-                                            </Item>
-                                            <Item>
-                                                <Label htmlFor="preco">Preço: </Label>
-                                                <Input onChange={(d) => handle(d)} value={data.preco} type="text" name="preco" id="preco" />
-                                            </Item>
-                                        </ContentContainer>
-                                    </WrapperForm>
-                                    <ButtonContainer>
-                                        <Button type="submit" text={textButton} />
-                                    </ButtonContainer>
-                                </FormContainer>
-                                {sentData &&
-                                    <ProdutoSuccess nome={data.nome} quantidade={data.quantidade} preco={data.preco}></ProdutoSuccess>}
-                            </Cadastro>
+                            {edit && (
+                                <Container>
+                                    <EditarProduto id={edit} setEdit={setEdit} edited={setEdited} />
+                                </Container>
+                            )}
+                            {!edit && (
+                                <Container>
+                                    <p style={{ fontWeight: "600", fontSize: "17px", paddingBottom: "15px" }}>Cadastrar novo produto</p>
+                                    <FormContainer onSubmit={(s) => submit(s)}>
+                                        <WrapperForm>
+                                            <ContentContainer>
+                                                <Item>
+                                                    <Label htmlFor="nome">Nome: </Label>
+                                                    <Input onChange={(d) => handle(d)} value={data.nome} type="text" name="nome" id="nome" required />
+                                                </Item>
+                                                <Item>
+                                                    <Label htmlFor="quantidade">Quantidade: </Label>
+                                                    <Input onChange={(d) => handle(d)} value={data.quantidade} type="number" name="quantidade" id="quantidade" required />
+                                                </Item>
+                                                <Item>
+                                                    <Label htmlFor="preco">Preço: </Label>
+                                                    <Input onChange={(d) => handle(d)} value={data.preco} type="text" name="preco" id="preco" required />
+                                                </Item>
+                                            </ContentContainer>
+                                        </WrapperForm>
+                                        <ButtonContainer>
+                                            <Button type="submit" text={textButton} />
+                                        </ButtonContainer>
+                                    </FormContainer>
+                                    <div style={{ marginTop: "10px" }}>
+                                        <Button func={() => setData({ nome: "", quantidade: "", preco: "" })} text={"Limpar campos"} />
+                                    </div>
+                                    {sentData &&
+                                        <ProdutoSuccess text={"Produto cadastrado com sucesso!"}></ProdutoSuccess>}
+                                </Container>
+                            )}
                         </BottomContainer>
                     </Wrapper>
                 </BG>
@@ -177,7 +194,7 @@ const List = styled.div`
     overflow-x: hidden;
 `
 
-const Cadastro = styled.div`
+const Container = styled.div`
     width: 50%;
     display: flex;
     flex-direction: column;

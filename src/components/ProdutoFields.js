@@ -14,16 +14,15 @@ const InstituicaoFields = () => {
 }
 
 const Wrapper = styled.div`
-    display: grid; 
-    grid-template-columns: 130px 170px 190px 100px; 
     padding: 4px 0 16px 0;
-    position: sticky;
+    margin: 0 0 0 10px;
+    display: flex;
 `
 
 const Field = styled.li`
+    min-width: 150px;
     font-weight: 600;
     font-size: 17px;
-    width: 250px; 
     list-style: none;
 `
 
