@@ -13,7 +13,7 @@ import Modal from "../components/Modal"
 const Cadastro = (props) => {
     const [toDelete, setToDelete] = useState(false)
     const [isModalOpen, switchModal] = useState(false)
-    const url = "http://localhost:3000/instituicaos";
+    const url = "https://sda-api.herokuapp.com/instituicaos";
     const aux = true
     let textButton = '+ Cadastrar nova empresa'
     const [instituicoes, getInstituicoes] = useState('')

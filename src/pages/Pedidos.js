@@ -11,7 +11,7 @@ import NotAllowed from "./NotAllowed";
 
 const Cadastro = (props) => {
 
-    const url = "http://localhost:3000/pedidos";
+    const url = "https://sda-api.herokuapp.com/pedidos";
     const [pedidos, getPedidos] = useState('')
 
     useEffect(() => {

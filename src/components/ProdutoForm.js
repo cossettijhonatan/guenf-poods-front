@@ -8,7 +8,7 @@ import { IdContainer, EndContainer, Title, Label, Input, InnerContainer, ButtonC
 
 const ProdutoForm = () => {
     let textButton = 'Cadastrar'
-    const url = "http://localhost:3000/produtos"
+    const url = "https://sda-api.herokuapp.com/produtos"
     const navigate = useNavigate();
     const [sentData, setSentData] = useState(false);
     const [data, setData] = useState({

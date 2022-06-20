@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Modal = (props) => {
-    const url = `http://localhost:3000/instituicaos/${props.id}`
+    const url = `https://sda-api.herokuapp.com/instituicaos/${props.id}`
     const [empresaData, setEmpresaData] = useState("");
     const handlerDelete = () => {
         axios.delete(url)

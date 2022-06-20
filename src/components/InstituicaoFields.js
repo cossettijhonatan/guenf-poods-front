@@ -29,6 +29,17 @@ const Field = styled.li`
     font-size: 17px;
     width: 250px; 
     list-style: none;
+    
+    
+    @media screen and (max-width: 1460px){
+        min-width: 200px; 
+        width: 200px;
+    }
+
+    @media screen and (max-width: 1250px){
+        min-width: 170px; 
+        width: 170px;
+    }
 `
 
 const ButtonArea = styled.li`

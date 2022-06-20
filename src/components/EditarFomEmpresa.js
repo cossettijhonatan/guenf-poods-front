@@ -6,7 +6,7 @@ import { FormContainer, IdContainer, EndContainer, Title, Label, Input, InnerCon
 import styled from "styled-components";
 
 const Form = (props) => {
-    const url = `http://localhost:3000/instituicaos/${props.id}`
+    const url = `https://sda-api.herokuapp.com/instituicaos/${props.id}`
     const [empresaData, setEmpresaData] = useState("");
     const navigate = useNavigate();
     const [data, setData] = useState({

@@ -14,7 +14,7 @@ import EditarProduto from "../components/EditarProduto";
 
 const Produtos = (props) => {
     const [textButton, setTextButton] = useState("Cadastrar")
-    const url = "http://localhost:3000/produtos";
+    const url = "https://sda-api.herokuapp.com/produtos";
     const [produtos, getProdutos] = useState('')
     const [sentData, setSentData] = useState(false);
     const [edit, setEdit] = useState(false)
@@ -183,6 +183,7 @@ const BottomContainer = styled.div`
     margin: 20px;
     overflow-y: hidden;
     display: flex; 
+
 `
 
 export const ButtonContainer = styled.div`
@@ -203,7 +204,6 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 `
 
 

@@ -7,7 +7,7 @@ import ProdutoSuccess from "./ProdutoSuccess";
 
 const EditarProduto = (props) => {
     let textButton = 'Atualizar'
-    const url = `http://localhost:3000/produtos/${props.id}`
+    const url = `https://sda-api.herokuapp.com/produtos/${props.id}`
     const [sent, setSent] = useState(false)
     const [data, setData] = useState({
         nome: "",

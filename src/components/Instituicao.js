@@ -60,6 +60,16 @@ const Field = styled.li`
     display: flex; 
     align-items: center; 
     font-weight: 300;
+
+    @media screen and (max-width: 1460px){
+        min-width: 200px; 
+        width: 200px;
+    }
+
+    @media screen and (max-width: 1250px){
+        min-width: 170px; 
+        width: 170px;
+    }
 `
 const ButtonArea = styled.li`
 min-width: 250px; 
@@ -69,6 +79,9 @@ display: flex;
 justify-content: space-between;
 align-items: center; 
 font-weight: 300;
+@media screen and (max-width: 1250px){
+        min-width: 170px; 
+    }
 `
 
 const StyledLink = styled(Link)`

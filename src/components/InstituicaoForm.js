@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 const Form = () => {
     let textButton = 'Cadastrar'
-    const url = "http://localhost:3000/instituicaos"
+    const url = "https://sda-api.herokuapp.com/instituicaos"
     const navigate = useNavigate();
     const [data, setData] = useState({
         nomeFantasia: "",
