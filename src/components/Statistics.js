@@ -14,7 +14,7 @@ const Statistics = () => {
             </Item>
             <Item>
                 Receita gerada
-                <Value> 132.589,72 </Value>
+                <Value> R$ 132.589,72 </Value>
             </Item>
         </Wrapper>
     );

@@ -109,7 +109,7 @@ const Sobre = (props) => {
                                     </div>
                                 </Text>
                                 <Buttons>
-                                    <Button>Download do Manual</Button>
+                                    <Button><StyledLink href="https://drive.google.com/file/d/1STHCOUrtSctwpmEOVHHtPlPJIqdjs7__/view?usp=sharing" target="_blank">Download do Manual</StyledLink></Button>
                                     <Button><StyledLink href="mailto:marialuiza@pq.uenf.br,ascv@uenf.br">Entre em contato </StyledLink></Button>
                                 </Buttons>
                             </TextWrapper>
